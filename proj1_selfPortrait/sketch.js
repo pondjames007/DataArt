@@ -120,17 +120,18 @@ map.on('load', () => {
             let colorStr = 'rgba('+r+','+g+','+b+',0.3)';
             
             let dist = (cumDistance[i] - (cumDistance[i-30] || 0)).toFixed(2);
-            let chart = document.createElement("li");
-            chart.className = "index";
-            let name = document.createElement("span");
-            name.className = "info"
-            name.innerHTML = healthData[i].date + ": " + dist + "km";
-            chart.appendChild(name);
-            
-            
-        
-            document.querySelector('.chart').appendChild(chart);
-            
+            if(dist > 1){
+                let chart = document.createElement("li");
+                chart.className = "index";
+                chart.style.width = dist*2 +"px";
+                chart.style.background = colorStr;
+                let name = document.createElement("span");
+                name.className = "info"
+                name.innerHTML = healthData[i].date + ": " + dist + "km";
+                chart.appendChild(name);
+                
+                document.querySelector('.chart').appendChild(chart);
+            }
             map.addLayer({
                 "id": "points"+ i,
                 "type": "circle",
@@ -167,9 +168,18 @@ map.on('load', () => {
         }
         
         }
+
+        try {
+            document.getElementById('distance').innerHTML = "Total Distance: " + cumDistance[i].toFixed(2) + "km" 
+        } catch (error) {
+            
+        }
+        
+
+        
+            
     }, 10);
 });
-
 
 
 
