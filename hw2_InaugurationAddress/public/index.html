@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US" prefix="og: http://ogp.me/ns#">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="Author" content="James Alan Heng" />
+    <meta name="viewport" content="width=1024" />
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7, IE=9" />
+    <meta name="Description" content="" />
+    <link rel="stylesheet" href="css/style.css" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat|Noto+Serif+JP|Open+Sans" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script type="text/javascript" src="/socket.io/socket.io.js"></script>
+	<script src="http://code.responsivevoice.org/responsivevoice.js"></script>
+    <title>Inaugural Addresses</title>
+</head>
+
+<body id="home">
+    <header id="header">
+        <h1>Inaugural Address</h1>
+    </header>
+    <div id="main">
+        <div id="search">
+            <span class="input input--hoshi">
+                <input class="input__field input__field--hoshi" type="text" id="input-4" />
+                <label class="input__label input__label--hoshi input__label--hoshi-color-0" for="input-4">
+                    <!-- <span class="input__label-content input__label-content--hoshi">Name</span>
+                            <span class="input__label-content input__label-content--hoshi input__label-content--anim">hope</span> -->
+                    <span class="input__label-content input__label-content--hoshi txt-rotate" data-period="2000"
+                        data-rotate='[ "people", "hope", "freedom", "equal", "together", "nation", "believe"]'></span>
+                </label>
+            </span>
+        </div>
+        <div class="button">
+            <button id="button-search" type="button" class="btn">Search</button>
+        </div>
+        <div id="chart">
+            <div class="notes">
+                <!-- <span class="notes">The word is mentioned</span> -->
+                <!-- <span class="notes notes--word"></span> -->
+                <span class="notes notes--count"></span>
+                <!-- <span class="notes">in all US presidential inaugural addresses.</span> -->
+            </div>
+            <div class="barHolder">
+                
+            </div>
+        </div>
+    </div>
+    <div class="desc">
+            <div class="illustrations--header"></div>
+            <div class="illustrations--paragraph"></div>
+        </div>
+    <div id="footer"></div>
+
+    <script src="js/animation.js"></script>
+
+    <!-- Detect if the input field is filled -->
+    <script src="js/classie.js"></script>
+    <script>
+        (function () {
+            [].slice.call(document.querySelectorAll('input.input__field')).forEach(function (inputEl) {
+                // in case the input is already filled..
+                if (inputEl.value.trim() !== '') {
+                    classie.add(inputEl.parentNode, 'input--filled');
+                }
+
+                // events:
+                inputEl.addEventListener('focus', onInputFocus);
+                inputEl.addEventListener('blur', onInputBlur);
+            });
+
+            function onInputFocus(ev) {
+                classie.add(ev.target.parentNode, 'input--filled');
+            }
+
+            function onInputBlur(ev) {
+                if (ev.target.value.trim() === '') {
+                    classie.remove(ev.target.parentNode, 'input--filled');
+                }
+            }
+        })();
+    </script>
+    <script src="js/text-rotate.js"></script>
+
+</body>
+
+</html>
